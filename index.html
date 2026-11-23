@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0c">
+<title>TNT TOOL — Premium Control Panel</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0b0c;--panel:#151515;--panel2:#1c1b18;--line:#30291d;--gold:#d7b15b;--gold2:#f0d58e;--muted:#aaa397;--text:#f4efe4;--green:#76c995}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#292114 0%,var(--bg) 52%);color:var(--text);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+button,input{font:inherit}button{cursor:pointer}
+.app{max-width:760px;margin:auto;padding:16px 14px 24px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}
+.brand{display:flex;align-items:center;gap:10px}.mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#f2d88e,#a77b2e);color:#17130a;display:grid;place-items:center;font-weight:900;font-size:23px;box-shadow:0 5px 22px #b88a3333}
+.brand strong{display:block;color:var(--gold2);font-size:17px;letter-spacing:1.6px}.brand small{color:var(--muted);font-size:9px;letter-spacing:1.5px}
+.pill{border:1px solid #355b43;color:#9be0b2;background:#14251a;border-radius:99px;padding:6px 9px;font-size:10px;font-weight:700;white-space:nowrap}
+h1{font-size:23px;margin:0 0 2px}h2{font-size:14px;margin:0;letter-spacing:.3px}.muted{color:var(--muted)}.eyebrow{color:var(--gold);font-size:10px;font-weight:800;letter-spacing:1.3px;margin-bottom:5px}
+.welcome{display:flex;justify-content:space-between;align-items:end;margin:4px 0 14px}.date{font-size:11px;color:var(--muted);text-align:right}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:15px}
+.card{background:linear-gradient(145deg,#1b1a17,#131313);border:1px solid var(--line);border-radius:14px;padding:12px;min-width:0}
+.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px}.ico{color:var(--gold);font-size:17px}.stat-value{font-size:21px;font-weight:800;color:var(--gold2);margin-top:7px}.stat-sub{font-size:10px;color:var(--muted)}
+.section{display:flex;align-items:center;justify-content:space-between;margin:17px 1px 9px}.section .eyebrow{margin:0}.section small{color:var(--muted);font-size:10px}
+.account{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.account p{margin:3px 0 0;color:var(--muted);font-size:11px}.outline{border:1px solid #725a2e;color:var(--gold2);background:#241e12;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:700}
+.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.module{background:var(--panel);border:1px solid #2c281f;border-radius:12px;padding:11px;display:flex;gap:9px;align-items:center;min-height:67px}
+.module-icon{width:34px;height:34px;flex:none;border-radius:10px;background:#302719;color:var(--gold2);display:grid;place-items:center;font-size:17px}
+.module strong{display:block;font-size:12px}.module small{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.tag{display:inline-block;color:#cbb47d;background:#2b2418;border-radius:5px;padding:2px 5px;font-size:9px;margin-top:5px}
+.log{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px solid #29251e}.log:last-child{border:0}.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);margin-top:5px;flex:none}.log strong{font-size:11px}.log small{display:block;color:var(--muted);font-size:10px}
+.bottom-nav{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#111111f2;border-top:1px solid #393020;backdrop-filter:blur(16px);padding:8px 10px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center}
+.nav-inner{width:100%;max-width:760px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.nav-btn{border:0;background:transparent;color:#948d80;border-radius:10px;padding:7px 2px 5px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px}
+.nav-btn span:first-child{font-size:18px}.nav-btn.active{color:var(--gold2);background:#2a2317}
+.view{display:none}.view.active{display:block}
+.form-card{max-width:440px;margin:22px auto}.field{display:block;margin:12px 0 5px;color:#c9b98f;font-size:11px}.input{width:100%;background:#0d0d0d;border:1px solid #443821;border-radius:9px;padding:12px;color:var(--text);outline:none}.input:focus{border-color:var(--gold)}
+.primary{width:100%;border:0;border-radius:10px;padding:12px;background:linear-gradient(100deg,#b88938,#f0d58e);color:#17130a;font-weight:900;margin-top:13px}
+.notice{border:1px solid #574628;background:#241e13;color:#d9c798;padding:10px;border-radius:10px;font-size:10px;margin-top:12px}
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #2b271f;font-size:12px}
+footer{text-align:center;color:#746e62;font-size:9px;margin:22px 0 5px;letter-spacing:1px}
+@media(min-width:600px){.stats{grid-template-columns:repeat(4,1fr)}.modules{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="mark">T</div><div><strong>TNT TOOL</strong><small>PREMIUM CONTROL PANEL</small></div></div>
+  <span class="pill">● DEMO MODE</span>
+</header>
+
+<main>
+<section class="view active" id="dashboard">
+  <div class="welcome"><div><div class="eyebrow">TỔNG QUAN HỆ THỐNG</div><h1>Xin chào!</h1><div class="muted" style="font-size:11px">Chào mừng đến với TNT TOOL.</div></div><div class="date" id="today"></div></div>
+  <div class="stats">
+    <div class="card"><div class="stat-top">Trạng thái <span class="ico">◉</span></div><div class="stat-value" style="font-size:18px">Demo</div><div class="stat-sub">Chưa kết nối máy chủ</div></div>
+    <div class="card"><div class="stat-top">Lịch đã tạo <span class="ico">◷</span></div><div class="stat-value">04</div><div class="stat-sub">Mục mẫu</div></div>
+    <div class="card"><div class="stat-top">Tài khoản <span class="ico">♙</span></div><div class="stat-value" style="font-size:18px">Chưa đăng nhập</div><div class="stat-sub">TNT account</div></div>
+    <div class="card"><div class="stat-top">Kích hoạt <span class="ico">◇</span></div><div class="stat-value" style="font-size:18px">Chưa có</div><div class="stat-sub">Activation status</div></div>
+  </div>
+  <div class="section"><div class="eyebrow">TÀI KHOẢN TOOL</div><small>BẢO MẬT</small></div>
+  <div class="card account"><div><h2>Chưa đăng nhập</h2><p>Đăng nhập để quản lý cấu hình và lịch của bạn.</p></div><button class="outline" onclick="showView('account')">Đăng nhập</button></div>
+  <div class="section"><div class="eyebrow">QUẢN LÝ HOẠT ĐỘNG</div><small>04 MODULE</small></div>
+  <div class="modules">
+    <div class="module"><div class="module-icon">✧</div><div><strong>Tu luyện</strong><small>Theo dõi tiến trình</small><span class="tag">LỊCH & NHẮC GIỜ</span></div></div>
+    <div class="module"><div class="module-icon">♧</div><div><strong>Chặt cây Tiên Đào</strong><small>Theo dõi thời gian</small><span class="tag">LỊCH & NHẮC GIỜ</span></div></div>
+    <div class="module"><div class="module-icon">⌁</div><div><strong>Bắt chuột / Phúc Địa</strong><small>Quản lý lịch trình</small><span class="tag">LỊCH & NHẮC GIỜ</span></div></div>
+    <div class="module"><div class="module-icon">▦</div><div><strong>Sự kiện</strong><small>Theo dõi thời gian</small><span class="tag">THEO DÕI</span></div></div>
+  </div>
+  <div class="section"><div class="eyebrow">NHẬT KÝ HỆ THỐNG</div><small>MỚI NHẤT</small></div>
+  <div class="card"><div class="log"><i class="dot"></i><div><strong>Giao diện đã sẵn sàng</strong><small>Đây là dữ liệu minh họa · Chưa kết nối backend</small></div></div><div class="log"><i class="dot"></i><div><strong>Chế độ xem trên iPhone</strong><small>Thanh điều hướng cố định phía dưới</small></div></div></div>
+</section>
+
+<section class="view" id="schedule">
+  <div class="eyebrow">QUẢN LÝ THỜI GIAN</div><h1>Lịch hoạt động</h1><p class="muted" style="font-size:11px">Tạo lịch nhắc và theo dõi thời gian. Không điều khiển trò chơi.</p>
+  <div class="card" style="margin-top:14px">
+    <label class="field" for="task">Tên hoạt động</label>
+    <select class="input" id="task"><option>Tu luyện</option><option>Chặt cây Tiên Đào</option><option>Bắt chuột / Phúc Địa</option><option>Theo dõi sự kiện</option></select>
+    <label class="field" for="time">Thời gian nhắc</label><input class="input" id="time" type="datetime-local">
+    <button class="primary" onclick="addReminder()">＋ Lưu lịch nhắc</button>
+  </div>
+  <div class="section"><div class="eyebrow">DANH SÁCH LỊCH</div><small id="count">0 LỊCH</small></div>
+  <div class="card" id="reminders"><div class="muted" style="font-size:11px">Chưa có lịch nhắc nào.</div></div>
+</section>
+
+<section class="view" id="logs">
+  <div class="eyebrow">THEO DÕI HỆ THỐNG</div><h1>Nhật ký</h1><p class="muted" style="font-size:11px">Các thay đổi trên giao diện mẫu sẽ hiển thị tại đây.</p>
+  <div class="card" id="loglist"><div class="muted" style="font-size:11px">Chưa có nhật ký.</div></div>
+</section>
+
+<section class="view" id="account">
+  <div class="eyebrow">TÀI KHOẢN & BẢO MẬT</div><h1>Tài khoản</h1>
+  <div class="card form-card">
+    <h2>Đăng nhập TNT TOOL</h2>
+    <p class="muted" style="font-size:11px">Biểu mẫu minh họa — chưa gửi dữ liệu tới máy chủ.</p>
+    <label class="field" for="username">Tên tài khoản</label><input class="input" id="username" autocomplete="username" placeholder="Nhập tên tài khoản">
+    <label class="field" for="password">Mật khẩu</label><input class="input" id="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu">
+    <label class="field" for="activation">Mã kích hoạt (nếu được cấp)</label><input class="input" id="activation" placeholder="XXXX-XXXX-XXXX">
+    <button class="primary" onclick="demoLogin()">Đăng nhập bản xem trước</button>
+    <div class="notice">Bản demo không xác thực tài khoản, không lưu mật khẩu và không kết nối dịch vụ bên ngoài. Không nhập mật khẩu thật.</div>
+  </div>
+  <div class="card">
+    <div class="setting-row"><span>Phiên đăng nhập</span><span class="muted">Chưa kết nối</span></div>
+    <div class="setting-row"><span>Mã kích hoạt</span><span class="muted">Chưa kích hoạt</span></div>
+    <div class="setting-row"><span>Bảo mật</span><span style="color:var(--gold2)">Đang ở chế độ demo</span></div>
+  </div>
+</section>
+</main>
+<footer>TNT TOOL · PREMIUM EDITION · UI PROTOTYPE</footer>
+</div>
+<nav class="bottom-nav"><div class="nav-inner">
+<button class="nav-btn active" data-view="dashboard" onclick="showView('dashboard')"><span>⌂</span>Tổng quan</button>
+<button class="nav-btn" data-view="schedule" onclick="showView('schedule')"><span>▦</span>Lịch</button>
+<button class="nav-btn" data-view="logs" onclick="showView('logs')"><span>≡</span>Nhật ký</button>
+<button class="nav-btn" data-view="account" onclick="showView('account')"><span>♙</span>Tài khoản</button>
+</div></nav>
+<script>
+const dateEl=document.getElementById('today');
+dateEl.textContent=new Intl.DateTimeFormat('vi-VN',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date());
+function saveReminders(){const rows=[...document.querySelectorAll('#reminders .log')].map(row=>({task:row.dataset.task||row.querySelector('strong')?.textContent||'',time:row.dataset.time||row.querySelector('small')?.textContent||''}));localStorage.setItem('tnt_demo_reminders',JSON.stringify(rows));}
+function restoreReminders(){try{const rows=JSON.parse(localStorage.getItem('tnt_demo_reminders')||'[]');const list=document.getElementById('reminders');rows.forEach(item=>{const row=document.createElement('div');row.className='log';row.dataset.task=item.task;row.dataset.time=item.time;const dot=document.createElement('i');dot.className='dot';const wrap=document.createElement('div');const strong=document.createElement('strong');strong.textContent=item.task;const small=document.createElement('small');small.textContent=item.time;wrap.append(strong,small);row.append(dot,wrap);list.append(row);});if(rows.length){document.getElementById('count').textContent=rows.length+' LỊCH';}}catch(e){}}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===id));window.scrollTo({top:0,behavior:'smooth'});}
+function addReminder(){const task=document.getElementById('task').value;const time=document.getElementById('time').value;if(!time){alert('Chọn thời gian nhắc trước nhé.');return;}const date=new Date(time);if(Number.isNaN(date.getTime()))return;const row=document.createElement('div');row.className='log';const dot=document.createElement('i');dot.className='dot';const wrap=document.createElement('div');const strong=document.createElement('strong');strong.textContent=task;const small=document.createElement('small');small.textContent=new Intl.DateTimeFormat('vi-VN',{dateStyle:'medium',timeStyle:'short'}).format(date);wrap.append(strong,small);row.append(dot,wrap);row.dataset.task=task;row.dataset.time=new Intl.DateTimeFormat('vi-VN',{dateStyle:'medium',timeStyle:'short'}).format(date);const list=document.getElementById('reminders');if(list.querySelector('.muted'))list.innerHTML='';list.prepend(row);document.getElementById('count').textContent=list.children.length+' LỊCH';addLog('Đã tạo lịch nhắc: '+task);document.getElementById('time').value='';saveReminders();}
+function addLog(message){const list=document.getElementById('loglist');if(list.querySelector('.muted'))list.innerHTML='';const row=document.createElement('div');row.className='log';const dot=document.createElement('i');dot.className='dot';const wrap=document.createElement('div');const strong=document.createElement('strong');strong.textContent=message;const small=document.createElement('small');small.textContent=new Intl.DateTimeFormat('vi-VN',{dateStyle:'short',timeStyle:'short'}).format(new Date());wrap.append(strong,small);row.append(dot,wrap);list.prepend(row);}
+restoreReminders();
+function demoLogin(){alert('Đây chỉ là giao diện xem trước. Chức năng đăng nhập thật sẽ được kết nối ở bước backend. Đừng nhập mật khẩu thật vào bản demo này.');}
+</script>
+</body>
+</html>
